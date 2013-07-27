@@ -1,0 +1,32 @@
+[user]
+  name = H. Ryan Jones
+  #email = hrjones@amazon.com #WORK
+  email = hryanjones@gmail.com #HOME
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[core]
+  pager = less -r
+  excludesfile = ~/.gitignore_global
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[alias]
+  d = difftool
+  dag = log --graph --decorate --all
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%Cgreen%h%Creset %ad | %s%d %Cblue[%an]%Creset \" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+[color]
+  ui = true
+[amazon]
+  append-cr-url = true
+[push]
+  default = current

@@ -1,0 +1,17 @@
+[global_config]
+  focus = system
+[keybindings]
+[profiles]
+  [[default]]
+    scrollback_lines = 4096
+    background_color = "#fff9c7"
+    foreground_color = "#002e5c"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
