@@ -68,6 +68,9 @@ function remind_to_install_config_files {
         echo "sign into the https://console.aws.amazon.com/s3/home to get S3 access keys"
       fi
       ;;
+    chromium-browser)
+      CONFIG_DIRS=".config/chromium/Unpacked_Extensions/highContrastChromeExtension"
+      ;;
     fish)
       CONFIG_DIRS=".config/fish/config.fish
 .config/fish/functions/fish_prompt.fish"

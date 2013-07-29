@@ -1,0 +1,7 @@
+~/CODE_stuff
+~/.gnupg/passwordControlScripts/
+~/scripts
+~/CODE_stuff
+/apollo/env/OdinTools/bin
+/apollo/env/SDETools/bin
+/apollo/env/envImprovement/bin

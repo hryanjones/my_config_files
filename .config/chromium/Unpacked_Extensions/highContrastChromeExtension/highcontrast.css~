@@ -1,0 +1,90 @@
+html[hc="a0"] {
+  -webkit-filter: url('#hc_extension_off');
+}
+html[hcx="0"] img[src*="jpg"],
+html[hcx="0"] img[src*="jpeg"],
+html[hcx="0"] img.rg_i,
+html[hcx="0"] embed,
+html[hcx="0"] object,
+html[hcx="0"] video {
+  -webkit-filter: url('#hc_extension_off');
+}
+
+html[hc="a1"] {
+  -webkit-filter: url('#hc_extension_highcontrast');
+}
+html[hcx="1"] img[src*="jpg"],
+html[hcx="1"] img[src*="jpeg"],
+html[hcx="1"] img.rg_i,
+html[hcx="1"] embed,
+html[hcx="1"] object,
+html[hcx="1"] video {
+  -webkit-filter: url('#hc_extension_highcontrast_back');
+}
+
+html[hc="a2"] {
+  -webkit-filter: url('#hc_extension_grayscale');
+}
+html[hcx="2"] img[src*="jpg"],
+html[hcx="2"] img[src*="jpeg"],
+html[hcx="2"] img.rg_i,
+html[hcx="2"] embed,
+html[hcx="2"] object,
+html[hcx="2"] video {
+  -webkit-filter: url('#hc_extension_grayscale_back');
+}
+
+/*html[hc="a3"] {
+  -webkit-filter: url('#hc_extension_invert');
+  -webkit-filter: invert(1);
+}*/
+/*html[hcx="3"] [style*="background-image: url"],*/
+html[hcx="3"] img,
+html[hcx="3"] embed,
+html[hcx="3"] embed[type="application/x-shockwave-flash"],
+html[hcx="3"] object,
+html[hcx="3"] object[type="application/x-shockwave-flash"],
+html[hcx="3"] #SLPlayer,
+html[hcx="3"] .swatchImageOverlay,
+html[hcx="3"] .fbStarGrid,
+html[hcx="3"] .fbPhotosGrid,
+html[hcx="3"] video {
+  -webkit-filter: invert();
+}
+
+html[hcx="3"] img[role="button"],
+html[hcx="3"] [role="button"] > img,
+html[hcx="3"] img[role="menu"]
+{
+  -webkit-filter: invert(0);
+}
+html[hcx="3"] #tileContainer {
+  -webkit-filter: contrast(80%) brightness(120%);
+}
+#irc_bg, .irc_bg {
+  background:#ABABAB;
+}
+
+html[hc="a4"] {
+  -webkit-filter: url('#hc_extension_invert_grayscale');
+}
+html[hcx="4"] img[src*="jpg"],
+html[hcx="4"] img[src*="jpeg"],
+html[hcx="4"] img.rg_i,
+html[hcx="4"] embed,
+html[hcx="4"] object,
+html[hcx="4"] video {
+  -webkit-filter: url('#hc_extension_invert_back');
+}
+
+html[hc="a5"] {
+  -webkit-filter: url('#hc_extension_yellow_on_black');
+}
+html[hcx="5"] img[src*="jpg"],
+html[hcx="5"] img[src*="jpeg"],
+html[hcx="5"] img.rg_i,
+html[hcx="5"] embed,
+html[hcx="5"] object,
+html[hcx="5"] video {
+  -webkit-filter: url('#hc_extension_yellow_on_black_back');
+}
