@@ -100,7 +100,7 @@ PATH_ADDITIONS_FILE="~/.shell_path_additions.txt"
 if [ -e $PATH_ADDITIONS_FILE ]; then
   POSSIBLE_PATH_ADDITIONS=`cat $PATH_ADDITIONS_FILE`
   for P in $POSSIBLE_PATH_ADDITONS; do
-    if [ -e $P ]
+    if [ -e $P ]; then
       export PATH=$PATH:$P
     fi
   done

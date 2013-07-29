@@ -15,7 +15,7 @@ filetype plugin indent on
 "colorscheme ron
 
 set encoding=utf-8
-set t_Co=256
+set t_Co=256                    " use 256 colors
 set visualbell                  " Suppress audio/visual error bell
 set notimeout                   " No command timeout
 set showcmd                     " Show typed command prefixes while waiting for operator
@@ -196,4 +196,3 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
 endif
-

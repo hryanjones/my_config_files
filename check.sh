@@ -3,10 +3,10 @@
 # stolen from http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DEST="$HOME"
-BACKUP_DIR="/tmp/backup/`date +%s0`"
+#BACKUP_DIR="/tmp/backup/`date +%s0`"
+#mkdir -p $BACKUP_DIR
 
 mkdir -p $DEST
-mkdir -p $BACKUP_DIR
 cd $DIR
 
 # Get the package manager (yum or apt-get)
@@ -44,13 +44,15 @@ function check_program {
 }
 
 function remind_to_install_config_files {
+  CONFIG_DIRS="" # need to initialize else things may be repeated
   case "$1" in
     bash)
       CONFIG_DIRS=".bashrc
+.shell_path_additions.txt
 .bash_aliases"
       ;;
     vim)
-      echo "Making sure submodules loaded"
+      #echo "Making sure submodules loaded"
       git submodule init
       git submodule update
       CONFIG_DIRS=`grep --color=never -o "\ \.vim.*bundle.*" .gitmodules | sed -e 's/^\ //'` # include all vim modules
@@ -88,10 +90,14 @@ function remind_to_install_config_files {
     fi
     DEST_DIR=`dirname $DEST/$D`
     if [ ! -e $DEST_DIR ]; then
-      echo mkdir -pv $DEST_DIR
+      mkdir -pv $DEST_DIR
     fi
-    if [ $D -ef $DEST/$D ]; then
-      echo ln -sv --backup=numbered -T "$D" "$DEST/$D"
+    if [ ! $DIR/$D -ef $DEST/$D ]; then # if they're not the same suggest linking
+      if [ -d $DEST/$D ]; then
+        mv -T --backup=numbered $DEST/$D $DEST/$D~ && ln -sv -T $DIR/$D $DEST/$D
+      else
+        ln -sv --backup=numbered -T "$DIR/$D" "$DEST/$D"
+      fi
     fi
   done
 }
@@ -99,12 +105,3 @@ function remind_to_install_config_files {
 for P in $PROGS_TO_CHECK; do
   check_program $P
 done
-
-
-#FILES=`find . -type f -wholename "./.*" | sed -e 's/^\.\///' | grep -vE "^.git(/|modules|ignore)"`
-#for FILE in $FILES; do
-#  RELATIVE_DIR=`dirname $FILE`
-#  DESTINATION="$DEST/$RELATIVE_DIR"
-#  mkdir -pv $DESTINATION
-#  ln -sv --backup=numbered "$DIR/$FILE" $DESTINATION/
-#done
