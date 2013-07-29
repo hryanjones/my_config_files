@@ -28,3 +28,9 @@
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule ".vim/bundle/vim-neocomplcache"]
+	path = .vim/bundle/vim-neocomplcache
+	url = https://github.com/Shougo/neocomplcache.vim.git
+[submodule ".vim/bundle/vim-gundo"]
+	path = .vim/bundle/vim-gundo
+	url = https://github.com/Shougo/neocomplcache.vim.git
