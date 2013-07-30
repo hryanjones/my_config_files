@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/vim-stylus"]
 	path = .vim/bundle/vim-stylus
 	url = https://github.com/wavded/vim-stylus.git
-[submodule ".vim/bundle/vim-powerline"]
-	path = .vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/powerline.git
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -28,9 +25,3 @@
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-[submodule ".vim/bundle/vim-neocomplcache"]
-	path = .vim/bundle/vim-neocomplcache
-	url = https://github.com/Shougo/neocomplcache.vim.git
-[submodule ".vim/bundle/vim-gundo"]
-	path = .vim/bundle/vim-gundo
-	url = https://github.com/Shougo/neocomplcache.vim.git
