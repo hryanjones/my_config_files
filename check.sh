@@ -6,7 +6,25 @@ DEST="$HOME"
 #BACKUP_DIR="/tmp/backup/`date +%s0`"
 #mkdir -p $BACKUP_DIR
 
-mkdir -p $DEST
+DRY_RUN="true"
+if [ $# -ne 0 ]; then
+  DRY_RUN="false"
+  echo "Doing a dry run.  Will echo the actions to be taken (which can be applied manually).  If you want to do a real run include an argument, any argument."
+fi
+
+function handle_dry_run {
+  if [ "$DRY_RUN" == "true" ]; then
+    echo "$*"
+  else
+    $*
+  fi
+}
+
+if [ ! -e $DEST ]; then
+  CMD="mkdir -p $DEST"
+  handle_dry_run $CMD
+fi
+
 cd $DIR
 
 # Get the package manager (yum or apt-get)
@@ -37,7 +55,8 @@ git"
 function check_program {
   which $1 > /dev/null
   if [ $? -ne 0 ]; then
-    echo sudo $PACK_MGR -y install $1
+    CMD="sudo $PACK_MGR -y install $1"
+    handle_dry_run $CMD
   else
     remind_to_install_config_files $1
   fi
@@ -53,8 +72,10 @@ function remind_to_install_config_files {
       ;;
     vim)
       #echo "Making sure submodules loaded"
-      git submodule init
-      git submodule update
+      CMD="git submodule init"
+      handle_dry_run $CMD
+      CMD="git submodule update"
+      handle_dry_run $CMD
       CONFIG_DIRS=`grep --color=never -o "\ \.vim.*bundle.*" .gitmodules | sed -e 's/^\ //'` # include all vim modules
       CONFIG_DIRS="$CONFIG_DIRS
 .vimrc
@@ -85,18 +106,21 @@ function remind_to_install_config_files {
   for D in $CONFIG_DIRS; do
     if [ ! -e $D ]; then
       echo "$D is not present in $DIR -- SKIPPING"
-      echo "CONSIDER DELETING $D FROM CONFIG FILES!!!!!!!"
+      echo "CONSIDER DELETING $D FROM CONFIG FILES!!!!!!! (giving up now)"
       exit 1
     fi
     DEST_DIR=`dirname $DEST/$D`
     if [ ! -e $DEST_DIR ]; then
-      mkdir -pv $DEST_DIR
+      CMD="mkdir -pv $DEST_DIR"
+      handle_dry_run $CMD
     fi
     if [ ! $DIR/$D -ef $DEST/$D ]; then # if they're not the same suggest linking
       if [ -d $DEST/$D ]; then
-        mv -T --backup=numbered $DEST/$D $DEST/$D~ && ln -sv -T $DIR/$D $DEST/$D
+        CMD="mv -T --backup=numbered $DEST/$D $DEST/$D~ && ln -sv -T $DIR/$D $DEST/$D"
+        handle_dry_run $CMD
       else
-        ln -sv --backup=numbered -T "$DIR/$D" "$DEST/$D"
+        CMD="ln -sv --backup=numbered -T $DIR/$D $DEST/$D"
+        handle_dry_run $CMD
       fi
     fi
   done

@@ -1,9 +1,49 @@
 " Pathogen
 " --------
 
+" Pathogen seems to be sucking on hrjones.aka and can't figure out why
+" adding plugin lines here
+set runtimepath^=~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+
+nnoremap <F4> :GundoToggle<CR>
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=~/.vim/bundle/nerdcommenter/plugin/NERD_commenter.vim
+set runtimepath^=~/.vim/bundle/nerdtree/plugin/NERD_tree.vim
+set runtimepath^=~/.vim/bundle/vim-endwise/plugin/endwise.vim
+set runtimepath^=~/.vim/bundle/vim-surround/plugin/surround.vim
+
+let g:rails_statusline=0        " Disable rails statusline, which doesn't like powerline
+let g:Powerline_symbols='fancy'
+
+
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
 filetype off                    " Avoid a Vim/Pathogen bug
-call pathogen#helptags()
+"execute pathogen#infect()
+"execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
+call pathogen#helptags() 
+
+"execute pathogen#incubate() 
+"call pathogen#incubate() 
 call pathogen#runtime_append_all_bundles()
+
+
+
 
 set nocompatible                " Don't maintain compatibility with vi
 
@@ -37,9 +77,6 @@ set splitbelow                  " ... and bottom
   set wildmenu              " This is used with wildmode(full) to cycle options
   set laststatus=2          " always have status bar
 
-let g:rails_statusline=0        " Disable rails statusline, which doesn't like powerline
-let g:Powerline_symbols='fancy'
-
 set incsearch             " incremental search
 set history=1024  " keep 1024 lines of history
 set autowriteall                " Save when focus is lost
@@ -52,7 +89,6 @@ vmap <S-tab>    <gv
 
 
 " Key remappings
-nnoremap <F4> :GundoToggle<CR>
 set pastetoggle=<F2> " Allow paste mode to be entered via <F2> key
 " switch focus to next tab
 map <F7> <esc>:tabp<enter>
