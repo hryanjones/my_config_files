@@ -14,6 +14,8 @@ filetype plugin indent on
 " Looks good inverted with my set background color and readable in vimdiff
 "colorscheme ron
 
+  set shiftwidth=2 "number of columns to indent blocks
+  set ts=2 " set normal indenting to 2 spaces
 set encoding=utf-8
 set t_Co=256                    " use 256 colors
 set visualbell                  " Suppress audio/visual error bell
@@ -81,9 +83,6 @@ if has("autocmd")
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
-
-  set shiftwidth=2
-  set ts=2
 
   " Perl mason modules often have different tab stop issues
   autocmd BufRead *mi setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal expandtab
