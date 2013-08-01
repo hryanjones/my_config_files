@@ -52,7 +52,9 @@ filetype plugin indent on
 " Configuration
 " -------------
 " Looks good inverted with my set background color and readable in vimdiff
-"colorscheme ron
+if &diff " stolen from http://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
+  colorscheme ron
+endif
 
   set shiftwidth=2 "number of columns to indent blocks
   set ts=2 " set normal indenting to 2 spaces
