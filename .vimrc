@@ -40,7 +40,7 @@ call pathogen#helptags()
 
 "execute pathogen#incubate() 
 "call pathogen#incubate() 
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 
 
 
