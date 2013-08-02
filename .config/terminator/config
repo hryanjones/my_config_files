@@ -3,9 +3,12 @@
 [keybindings]
 [profiles]
   [[default]]
+    use_system_font = False
     scrollback_lines = 4096
-    background_color = "#fff9c7"
     foreground_color = "#002e5c"
+    scroll_on_output = False
+    font = Ubuntu Mono derivative Powerline 13
+    background_color = "#fff9c7"
 [layouts]
   [[default]]
     [[[child1]]]
