@@ -18,6 +18,6 @@ alias irb='irb --readline -r irb/completion'
 # SSH aliases (HOME)
 
 # SSH aliases (WORK)
-alias ssh2pdx='autossh -L 5222:talk.google.com:5222 -L 6667:irc.freenode.net:6667 -L 5223:chat.facebook.com:5222 -i ~/.ssh/hrjonesAtAmazonKey.pem ec2-user@pdx.hrjones.myinstance.com'
+alias ssh2pdx='autossh -L 5222:talk.google.com:5222 -L 6667:irc.freenode.net:6667 -L 5223:chat.facebook.com:5222 pdx.hrjones.myinstance.com'
 alias ssh2host='ssh hrjones-host.aka.amazon.com'
 alias ssh2rhel='ssh hrjones-2.desktop.amazon.com'
