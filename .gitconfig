@@ -1,7 +1,7 @@
 [user]
   name = H. Ryan Jones
-  #email = hrjones@amazon.com #WORK
-  email = hryanjones@gmail.com #HOME
+  email = hrjones@amazon.com #WORK
+  #email = hryanjones@gmail.com #HOME
 [color]
   diff = auto
   status = auto
@@ -10,7 +10,7 @@
   pager = less -r
   excludesfile = ~/.gitignore_global
 [diff]
-  tool = vimdiff
+  tool = meld
 [difftool]
   prompt = false
 [alias]

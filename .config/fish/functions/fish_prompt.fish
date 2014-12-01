@@ -4,9 +4,9 @@ function fish_prompt
 
   # if powershell exists us it!
   if ls ~/github/powerline-shell/powerline-shell.py ^ /dev/null > /dev/null
-    ~/github/powerline-shell/powerline-shell.py $status --shell bare --colorize-hostname
+    ~/github/powerline-shell/powerline-shell.py $status --shell bare --colorize-hostname --mode flat
   else
-  # if not fall back on previous shell
+    # if not fall back on previous shell
     set_color red
     echo "-------------------- "(date)" --------------------"
     set_color cyan

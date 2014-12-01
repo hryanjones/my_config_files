@@ -4,7 +4,7 @@
 [profiles]
   [[default]]
     use_system_font = False
-    scrollback_lines = 4096
+    scrollback_lines = 10000
     foreground_color = "#002e5c"
     scroll_on_output = False
     font = Ubuntu Mono derivative Powerline 13

@@ -4,3 +4,4 @@
 /apollo/env/OdinTools/bin
 /apollo/env/SDETools/bin
 /apollo/env/envImprovement/bin
+~/Sublime_Text_2
