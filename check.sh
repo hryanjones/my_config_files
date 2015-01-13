@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# stolen from http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in 
+# stolen from http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DEST="$HOME"
 #BACKUP_DIR="/tmp/backup/`date +%s0`"
@@ -50,6 +50,7 @@ chromium-browser
 s3cmd
 ipython
 ruby
+meld
 git"
 
 function check_program {
@@ -88,7 +89,7 @@ function remind_to_install_config_files {
       ;;
     s3cmd)
       if [ ! -f $DEST/.s3cfg ]; then
-        echo "sign into the https://console.aws.amazon.com/s3/home to get S3 access keys"
+        echo "#sign into the https://console.aws.amazon.com/s3/home to get S3 access keys"
       fi
       ;;
     chromium-browser)
