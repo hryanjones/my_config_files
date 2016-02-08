@@ -144,6 +144,7 @@ popd()
 alias cd='pushd'
 alias back='popd'
 alias flip='pushd_builtin'
-alias msg='curl "hrjones.aka.amazon.com/derp.php?message='
+
 ################################################################
 echo "fish!"
+

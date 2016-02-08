@@ -7,10 +7,10 @@ function fish_prompt
     ~/github/powerline-shell/powerline-shell.py $status --shell bare --colorize-hostname --mode flat
   else
     # if not fall back on previous shell
-    set_color red
+    set_color green
     echo "-------------------- "(date)" --------------------"
     set_color cyan
-    printf '%s' (whoami)
+    printf ' %s' (whoami)
     set_color normal
     printf ' at '
 

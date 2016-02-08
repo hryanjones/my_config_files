@@ -10,7 +10,7 @@
   pager = less -r
   excludesfile = ~/.gitignore_global
 [diff]
-  tool = meld
+  tool = vimdiff
 [difftool]
   prompt = false
 [alias]

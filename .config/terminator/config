@@ -1,14 +1,14 @@
 [global_config]
-  focus = system
 [keybindings]
 [profiles]
   [[default]]
-    use_system_font = False
-    scrollback_lines = 10000
-    foreground_color = "#002e5c"
+    visible_bell = True
+    urgent_bell = True
+    foreground_color = "#000000"
     scroll_on_output = False
-    font = Ubuntu Mono derivative Powerline 13
-    background_color = "#fff9c7"
+    background_color = "#ffffff"
+    scrollback_lines = 50000
+    audible_bell = True
 [layouts]
   [[default]]
     [[[child1]]]
