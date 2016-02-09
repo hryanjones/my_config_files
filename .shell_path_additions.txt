@@ -1,3 +1,4 @@
+/apollo/env/SDETools/bin
 /apollo/env/OdinTools/bin
 /apollo/env/WDETools/bin
 /apollo/env/envImprovement/bin

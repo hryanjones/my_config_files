@@ -96,10 +96,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-PATH_ADDITIONS_FILE="~/.shell_path_additions.txt"
+PATH_ADDITIONS_FILE="$HOME/.shell_path_additions.txt"
 if [ -e $PATH_ADDITIONS_FILE ]; then
-  POSSIBLE_PATH_ADDITIONS=`cat $PATH_ADDITIONS_FILE`
-  for P in $POSSIBLE_PATH_ADDITONS; do
+  for P in `cat $PATH_ADDITIONS_FILE`; do
     if [ -e $P ]; then
       export PATH=$PATH:$P
     fi
