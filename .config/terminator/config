@@ -1,4 +1,5 @@
 [global_config]
+  focus = mouse
 [keybindings]
 [profiles]
   [[default]]

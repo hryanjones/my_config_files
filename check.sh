@@ -43,6 +43,9 @@ fi
 
 # bash included just so can install bashrc & aliases
 PROGS_TO_CHECK="bash
+autossh
+ag
+jq
 vim
 terminator
 fish
@@ -50,6 +53,7 @@ chromium-browser
 nodejs
 npm
 git
+sshfs
 subl"
 # meld
 # s3cmd
@@ -59,7 +63,11 @@ subl"
 function check_program {
   which $1 > /dev/null
   if [ $? -ne 0 ]; then
-    CMD="sudo $PACK_MGR -y install $1"
+    if [ "$1" == "ag" ]; then
+      CMD="sudo $PACK_MGR -y install silversearcher-ag"
+    else
+      CMD="sudo $PACK_MGR -y install $1"
+    fi
     handle_dry_run $CMD
   else
     remind_to_install_config_files $1
