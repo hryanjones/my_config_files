@@ -2,6 +2,7 @@
 alias mv="mv -i"
 alias cp="cp -i"
 alias rm="rm -i"
+alias tree="tree -C"
 
 # Color aliases
 alias ls='ls --color=auto'
@@ -18,6 +19,5 @@ alias irb='irb --readline -r irb/completion'
 # SSH aliases (HOME)
 
 # SSH aliases (WORK)
-alias ssh2pdx='autossh -L 5222:talk.google.com:5222 -L 6667:irc.freenode.net:6667 -L 5223:chat.facebook.com:5222 pdx.hrjones.myinstance.com'
-alias ssh2host='ssh hrjones-host.aka.amazon.com'
-alias ssh2rhel='ssh hrjones-2.desktop.amazon.com'
+alias ssh2home='autossh -L 5222:talk.google.com:5222 hryanjones@home.hryanjones.com'
+alias ssh2acc='ssh hrjones.aka.corp.amazon.com'

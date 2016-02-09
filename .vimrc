@@ -42,10 +42,10 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 filetype off                    " Avoid a Vim/Pathogen bug
 "execute pathogen#infect()
 "execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
-call pathogen#helptags() 
+call pathogen#helptags()
 
-"execute pathogen#incubate() 
-"call pathogen#incubate() 
+"execute pathogen#incubate()
+"call pathogen#incubate()
 call pathogen#incubate()
 
 
@@ -169,7 +169,7 @@ au BufNewFile,BufRead *.mi set filetype=xml " Perl Mason"
 "source /apollo/env/EnvImprovement/var/vimruntimehook
 "endif
 "
-" --FOLLOWING STOLEN FROM VIMRC ENVIMPROVEMENT ----- 
+" --FOLLOWING STOLEN FROM VIMRC ENVIMPROVEMENT -----
 "  are my equivalents that have been disabled by comment
   set autoindent            " always set autoindenting on
   set backspace=2           " allow backspacing over everything in insert mode
@@ -186,7 +186,7 @@ au BufNewFile,BufRead *.mi set filetype=xml " Perl Mason"
   "set ruler                 " the ruler on the bottom is useful
   set scrolloff=5           " dont let the curser get too close to the edge MINE
   set textwidth=0           " Don't wrap words by default
-  set colorcolumn=80        " set a colored column to warn about width
+  set colorcolumn=120       " set a colored column to warn about width
   set whichwrap+=<,>,[,],h,l,~                 " arrow keys can wrap in normal and insert modes
   set helpfile=$VIMRUNTIME/doc/help.txt
   set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.class
@@ -225,7 +225,7 @@ autocmd FileType ruby set iskeyword=@,48-57,_,?,!,192-255
 autocmd FileType scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 " Insert ' => '
-autocmd FileType ruby imap  <Space>=><Space>
+autocmd FileType ruby imap <Space>=><Space>
 
 " Disable 'ex' mode
 map Q <Nop>
