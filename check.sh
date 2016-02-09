@@ -47,11 +47,14 @@ vim
 terminator
 fish
 chromium-browser
-s3cmd
-ipython
-ruby
-meld
-git"
+nodejs
+npm
+git
+subl"
+# meld
+# s3cmd
+# ipython
+# ruby
 
 function check_program {
   which $1 > /dev/null
@@ -87,11 +90,11 @@ function remind_to_install_config_files {
     terminator)
       CONFIG_DIRS=.config/terminator/config
       ;;
-    s3cmd)
-      if [ ! -f $DEST/.s3cfg ]; then
-        echo "#sign into the https://console.aws.amazon.com/s3/home to get S3 access keys"
-      fi
-      ;;
+    # s3cmd)
+    #   if [ ! -f $DEST/.s3cfg ]; then
+    #     echo "#sign into the https://console.aws.amazon.com/s3/home to get S3 access keys"
+    #   fi
+    #   ;;
     chromium-browser)
       CONFIG_DIRS=".config/chromium/Unpacked_Extensions/highContrastChromeExtension"
       ;;
@@ -102,6 +105,9 @@ function remind_to_install_config_files {
     git)
       CONFIG_DIRS=".gitconfig
 .gitignore_global"
+      ;;
+    subl)
+      CONFIG_DIRS=".config/sublime-text-3/Packages/User"
       ;;
   esac
   for D in $CONFIG_DIRS; do
@@ -117,7 +123,7 @@ function remind_to_install_config_files {
     fi
     if [ ! $DIR/$D -ef $DEST/$D ]; then # if they're not the same suggest linking
       if [ -d $DEST/$D ]; then
-        CMD="mv -T --backup=numbered $DEST/$D $DEST/$D~ && ln -sv -T $DIR/$D $DEST/$D"
+        CMD="mv -T --backup=numbered $DEST/$D $DEST/$D~; and ln -sv -T $DIR/$D $DEST/$D"
         handle_dry_run $CMD
       else
         CMD="ln -sv --backup=numbered -T $DIR/$D $DEST/$D"
