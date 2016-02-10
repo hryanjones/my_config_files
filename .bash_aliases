@@ -3,7 +3,7 @@ alias mv="mv -i"
 alias cp="cp -i"
 alias rm="rm -i"
 alias tree="tree -C"
-alias ding="eche -e \a"
+alias ding="echo -e \a"
 
 # Color aliases
 alias ls='ls --color=auto'
