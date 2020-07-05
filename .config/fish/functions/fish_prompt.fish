@@ -1,34 +1,11 @@
 function fish_prompt
+    set --local exit_code $status  # save previous exit code
 
-  echo $POWERLINE_PATH" -------------"
+    echo -e -n (_pure_prompt_beginning)  # init prompt context (clear current line, etc.)
+    echo -e (_pure_prompt_first_line)  # print current path, git branch/status, command duration
+    _pure_place_iterm2_prompt_mark # place iTerm shell integration mark
+    echo -e -n (_pure_prompt $exit_code)  # print prompt
+    echo -e (_pure_prompt_ending)  # reset colors and end prompt
 
-  # if powershell exists us it!
-  if ls ~/github/powerline-shell/powerline-shell.py ^ /dev/null > /dev/null
-    ~/github/powerline-shell/powerline-shell.py $status --shell bare --colorize-hostname --mode flat
-  else
-    # if not fall back on previous shell
-    set_color green
-    echo "-------------------- "(date)" --------------------"
-    set_color cyan
-    printf ' %s' (whoami)
-    set_color normal
-    printf ' at '
-
-    set_color -o -u red
-    printf '%s' (hostname|cut -d . -f 1)
-    set_color normal
-    printf ' in '
-
-    set_color $fish_color_cwd
-    printf '%s' (prompt_pwd)
-    set_color normal
-
-    # Line 2
-    echo
-    if test $VIRTUAL_ENV
-        printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
-    end
-    printf '$ '
-    set_color normal
-  end
+    set _pure_fresh_session false
 end

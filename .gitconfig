@@ -1,7 +1,7 @@
 [user]
   name = H. Ryan Jones
-  email = hrjones@amazon.com #WORK
-  #email = hryanjones@gmail.com #HOME
+  email = hryanjones@gmail.com
+  editor = code -- wait
 [color]
   diff = auto
   status = auto
@@ -9,8 +9,9 @@
 [core]
   pager = less -r
   excludesfile = ~/.gitignore_global
+  editor = code --wait
 [diff]
-  tool = vimdiff
+  tool = meld
 [difftool]
   prompt = false
 [alias]
@@ -26,8 +27,5 @@
   dump = cat-file -p
 [color]
   ui = true
-[amazon]
-  append-cr-url = true
-  pull-request-by-default = true
 [push]
   default = current

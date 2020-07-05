@@ -1,4 +1,8 @@
-/apollo/env/SDETools/bin
+~/CODE_stuff
+~/.gnupg/passwordControlScripts/
+~/scripts
 /apollo/env/OdinTools/bin
-/apollo/env/WDETools/bin
+/apollo/env/SDETools/bin
 /apollo/env/envImprovement/bin
+~/Sublime_Text_2
+~/bin

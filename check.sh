@@ -43,34 +43,25 @@ fi
 
 # bash included just so can install bashrc & aliases
 PROGS_TO_CHECK="bash
-autossh
-ag
-jq
-vim
 terminator
 fish
-chromium-browser
-nodejs
-npm
+code
+indicator-multiload
 git
-sshfs
-subl"
-# meld
-# s3cmd
-# ipython
-# ruby
+ag
+xcalib
+espeak
+node
+meld
+tree
+jq"
 
 function check_program {
-  which $1 > /dev/null
-  if [ $? -ne 0 ]; then
-    if [ "$1" == "ag" ]; then
-      CMD="sudo $PACK_MGR -y install silversearcher-ag"
-    else
-      CMD="sudo $PACK_MGR -y install $1"
-    fi
-    handle_dry_run $CMD
-  else
+  if [ `which $1` ]; then
     remind_to_install_config_files $1
+  else
+    CMD="sudo $PACK_MGR -y install $1"
+    handle_dry_run $CMD
   fi
 }
 
@@ -98,11 +89,14 @@ function remind_to_install_config_files {
     terminator)
       CONFIG_DIRS=.config/terminator/config
       ;;
-    # s3cmd)
-    #   if [ ! -f $DEST/.s3cfg ]; then
-    #     echo "#sign into the https://console.aws.amazon.com/s3/home to get S3 access keys"
-    #   fi
-    #   ;;
+    s3cmd)
+      if [ ! -f $DEST/.s3cfg ]; then
+        echo "#sign into the https://console.aws.amazon.com/s3/home to get S3 access keys"
+      fi
+      ;;
+    subl)
+	    CONFIG_DIRS=".config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+	  ;;
     chromium-browser)
       CONFIG_DIRS=".config/chromium/Unpacked_Extensions/highContrastChromeExtension"
       ;;
@@ -114,10 +108,8 @@ function remind_to_install_config_files {
       CONFIG_DIRS=".gitconfig
 .gitignore_global"
       ;;
-    subl)
-      CONFIG_DIRS=".config/sublime-text-3/Packages/User"
-      ;;
   esac
+
   for D in $CONFIG_DIRS; do
     if [ ! -e $D ]; then
       echo "$D is not present in $DIR -- SKIPPING"
@@ -131,7 +123,7 @@ function remind_to_install_config_files {
     fi
     if [ ! $DIR/$D -ef $DEST/$D ]; then # if they're not the same suggest linking
       if [ -d $DEST/$D ]; then
-        CMD="mv -T --backup=numbered $DEST/$D $DEST/$D~; and ln -sv -T $DIR/$D $DEST/$D"
+        CMD="mv -T --backup=numbered $DEST/$D $DEST/$D~ && ln -sv -T $DIR/$D $DEST/$D"
         handle_dry_run $CMD
       else
         CMD="ln -sv --backup=numbered -T $DIR/$D $DEST/$D"

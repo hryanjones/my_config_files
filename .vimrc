@@ -4,7 +4,7 @@
 " Pathogen seems to be sucking on hrjones.aka and can't figure out why
 " adding plugin lines here
 "set runtimepath^=~/.vim/bundle/neocomplcache/autoload/neocomplcache.vim
-runtime bundle/neocomplcache/autoload/neocomplcache.vim
+"runtime bundle/neocomplcache/autoload/neocomplcache.vim
 
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
@@ -25,17 +25,16 @@ if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 
-nnoremap <F4> :GundoToggle<CR>
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" for some reason this line is causing hella problems with AutoCmd enter errors and shit
+" set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
+
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set runtimepath^=~/.vim/bundle/nerdcommenter/plugin/NERD_commenter.vim
 set runtimepath^=~/.vim/bundle/nerdtree/plugin/NERD_tree.vim
 set runtimepath^=~/.vim/bundle/vim-endwise/plugin/endwise.vim
 set runtimepath^=~/.vim/bundle/vim-surround/plugin/surround.vim
 
-let g:rails_statusline=0        " Disable rails statusline, which doesn't like powerline
 let g:Powerline_symbols='fancy'
-
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 
@@ -59,7 +58,8 @@ filetype plugin indent on
 " -------------
 " Looks good inverted with my set background color and readable in vimdiff
 if &diff " stolen from http://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
-  colorscheme ron
+  "colorscheme ron
+  colorscheme zellner
 endif
 
   set shiftwidth=2 "number of columns to indent blocks
@@ -93,7 +93,6 @@ autocmd FocusLost * silent! wall
 " Indent/unindent visual mode selection
 vmap <tab>      >gv
 vmap <S-tab>    <gv
-
 
 
 " Key remappings
@@ -160,15 +159,6 @@ endif " has("autocmd")
 " Syntax Highlighting changes
 au BufNewFile,BufRead *.mi set filetype=xml " Perl Mason"
 
-"let hostname = substitute($HOSTNAME, '\..*','','')
-"if hostname == "hrjones-2" || hostname == "hrjones"
-"  " only stuff to be applied at work"
-"endif
-"if hostname == "hrjones-2"
-"  " only on RHEL5"
-"source /apollo/env/EnvImprovement/var/vimruntimehook
-"endif
-"
 " --FOLLOWING STOLEN FROM VIMRC ENVIMPROVEMENT -----
 "  are my equivalents that have been disabled by comment
   set autoindent            " always set autoindenting on
@@ -186,7 +176,7 @@ au BufNewFile,BufRead *.mi set filetype=xml " Perl Mason"
   "set ruler                 " the ruler on the bottom is useful
   set scrolloff=5           " dont let the curser get too close to the edge MINE
   set textwidth=0           " Don't wrap words by default
-  set colorcolumn=120       " set a colored column to warn about width
+  set colorcolumn=80        " set a colored column to warn about width
   set whichwrap+=<,>,[,],h,l,~                 " arrow keys can wrap in normal and insert modes
   set helpfile=$VIMRUNTIME/doc/help.txt
   set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.class
@@ -204,9 +194,6 @@ au BufNewFile,BufRead *.mi set filetype=xml " Perl Mason"
 autocmd BufWritePre *.m,*.h,*.c,*.mm,*.cpp,*.hpp :%s/\s\+$//e
 
 " Ruby, Rails
-autocmd BufWritePre *.rb,*.yml,*.js,*.json,*.css,*.less,*.sass,*.html,*.xml,*.erb,*.haml,*.feature :%s/\s\+$//e
-au BufRead,BufNewFile *.thor set filetype=ruby
-au BufRead,BufNewFile *.god set filetype=ruby
 au BufRead,BufNewFile Gemfile* set filetype=ruby
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au BufRead,BufNewFile soloistrc set filetype=ruby
@@ -225,7 +212,7 @@ autocmd FileType ruby set iskeyword=@,48-57,_,?,!,192-255
 autocmd FileType scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 " Insert ' => '
-autocmd FileType ruby imap <Space>=><Space>
+autocmd FileType ruby imap  <Space>=><Space>
 
 " Disable 'ex' mode
 map Q <Nop>

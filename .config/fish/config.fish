@@ -8,7 +8,7 @@ if ls $PATH_ADDITIONS_FILE >/dev/null ^/dev/null
       set P (echo $HOME$P | sed -e 's/~//')
     end
     if ls $P >/dev/null ^/dev/null
-      echo adding $P to the PATH
+      test $SHLVL -gt 2; and echo adding $P to the PATH # LVL 2 is user level, above that is scripts I think
       set -x PATH $PATH $P
     end
   end
