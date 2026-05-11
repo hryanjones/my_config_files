@@ -46,10 +46,8 @@ PROGS_TO_CHECK="bash
 terminator
 fish
 code
-indicator-multiload
 git
 ag
-xcalib
 espeak
 node
 meld
