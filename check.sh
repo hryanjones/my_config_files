@@ -69,7 +69,9 @@ function remind_to_install_config_files {
     bash)
       CONFIG_DIRS=".bashrc
 .shell_path_additions.txt
-.bash_aliases"
+.bash_aliases
+.claude/settings.json
+.claude/CLAUDE.md"
       ;;
     vim)
       #echo "Making sure submodules loaded"

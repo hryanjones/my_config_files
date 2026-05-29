@@ -1,0 +1,104 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "WebSearch",
+      "Grep",
+      "Glob",
+      "Git",
+      "Bash(git:*)",
+      "Bash(gh status*)",
+      "Bash(gh auth status*)",
+      "Bash(gh issue list*)",
+      "Bash(gh issue view*)",
+      "Bash(gh issue status*)",
+      "Bash(gh pr list*)",
+      "Bash(gh pr view*)",
+      "Bash(gh pr diff*)",
+      "Bash(gh pr status*)",
+      "Bash(gh repo view*)",
+      "Bash(gh repo list*)",
+      "Bash(gh run list*)",
+      "Bash(gh run view*)",
+      "Bash(gh pr create*--draft*)",
+      "Bash(gh issue comment*)",
+      "Bash(gh issue create*)",
+      "Bash(gh workflow run*)",
+      "Bash(ls:*)",
+      "Bash(bash ~/.claude/scripts/*)",
+      "Bash(~/.claude/scripts/*)",
+      "Bash(sed:*)",
+      "Bash(find:*)",
+      "Bash(awk:*)",
+      "Bash(bun install *)",
+      "Bash(bun run *)",
+      "Bash(jq:*)",
+      "Bash(curl -s *localhost*)",
+      "Bash(curl -sI *localhost*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(echo:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(npm run *)",
+      "Bash(npx tsc *)",
+      "Bash(mlr:*)"
+    ],
+    "ask": [
+      "Bash(git: push*)",
+      "Bash(gh repo delete*)",
+      "Bash(gh pr close*)",
+      "Bash(gh issue close*)",
+      "Bash(gh pr merge*)",
+      "Bash(gh api*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/hryanjones/.claude/hooks/claude-notifier-on-stop.js\"; paplay /usr/share/sounds/freedesktop/stereo/complete.oga;espeak 'Claude done'"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/hryanjones/.claude/hooks/claude-notifier-on-permission.js\"; paplay /usr/share/sounds/freedesktop/stereo/window-attention.oga; espeak 'Claude code needs your attention'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/hryanjones/.claude/hooks/claude-notifier-on-question.js\""
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|elicitation_dialog|idle_prompt|subagent_stop",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/hryanjones/.claude/notify.js\" # claude-code-notifier; paplay /usr/share/sounds/freedesktop/stereo/window-attention.oga; espeak 'Claude code needs your attention'"
+          }
+        ]
+      }
+    ]
+  },
+  "theme": "dark-daltonized",
+  "agentPushNotifEnabled": true,
+  "effortLevel": "max"
+}
