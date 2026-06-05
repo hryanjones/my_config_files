@@ -3,3 +3,7 @@
 *.swp
 apollo-overrides
 build
+
+**/.claude/settings.local.json
+
+**/.claude/settings.local.json
