@@ -163,6 +163,10 @@ Post the comment body exactly as written — do not strip or summarize any part 
 Never use raw `gh api` calls for this — the script formats threads readably and handles pagination.
 This applies to reading, searching, or checking for comments by any user.
 
+**Always post on a line of code:** When a finding references a specific file+line, always use `~/.claude/scripts/gh-pr-inline-comment.sh` — never use `gh-pr-reply.sh --issue` for line-specific findings.
+The script tries a resolvable PR review comment first; if the line is not in the diff it automatically falls back to a commit comment, which is still inline at the correct line.
+Only use `gh-pr-reply.sh --issue` for findings that genuinely have no associated file or line.
+
 **Resolving exact line numbers at draft time (no refetch on post):** When writing inline comment drafts, resolve exact line numbers immediately using `~/.claude/scripts/gh-pr-file.sh <PR_NUMBER> <FILE_PATH> | grep -n "PATTERN"`.
 Store the resolved line number, file path, and repo in the draft so posting with `~/.claude/scripts/gh-pr-inline-comment.sh` needs no further lookups.
 Never use `~` approximate line numbers in drafts.
