@@ -103,7 +103,8 @@
     ]
   },
   "theme": "dark-daltonized",
+  "effortLevel": "high",
+  "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "effortLevel": "high"
+  "skipAutoPermissionPrompt": true
 }
