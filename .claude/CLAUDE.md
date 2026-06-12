@@ -175,6 +175,13 @@ This applies to local code reviews too: resolve all line numbers before writing 
 **Reading files during PR analysis:** When reviewing or verifying findings against a PR's code, always use `~/.claude/scripts/gh-pr-file.sh <PR_NUMBER> <FILE_PATH>` to read the post-PR version of files.
 Never read files directly from disk with Read/cat during PR review — the working tree may not be in the same state.
 
+## Addressing PR Comments
+
+When asked to address PR comments, first ask whether to take **local actions only** or **full PR updates**.
+
+- **Local only** — update code and prepare comment replies in a local draft file, but do not commit (there may be more comments to address first).
+- **Full PR update** — make code changes, then commit, push, and post replies on the PR.
+
 ## Troubleshooting browser issues, especially with visibility and styling
 
 If a code investigation of styling in a browser isn't yielding answers, you may ask me to run a single command in the browser console.
