@@ -167,9 +167,10 @@ This applies to reading, searching, or checking for comments by any user.
 The script tries a resolvable PR review comment first; if the line is not in the diff it automatically falls back to a commit comment, which is still inline at the correct line.
 Only use `gh-pr-reply.sh --issue` for findings that genuinely have no associated file or line.
 
-**Resolving exact line numbers at draft time (no refetch on post):** When writing inline comment drafts, resolve exact line numbers immediately using `~/.claude/scripts/gh-pr-file.sh <PR_NUMBER> <FILE_PATH> | grep -n "PATTERN"`.
-Store the resolved line number, file path, and repo in the draft so posting with `~/.claude/scripts/gh-pr-inline-comment.sh` needs no further lookups.
-Never use `~` approximate line numbers in drafts.
+**Resolving exact line numbers at draft time (no refetch on post):** Before writing each finding to the draft, resolve its exact line number using `~/.claude/scripts/gh-pr-file.sh <PR_NUMBER> <FILE_PATH> | grep -n "PATTERN"`.
+Store the resolved line number, file path, and PR number directly in the finding's heading in the draft — e.g., `### 1. [BUG] Title — src/foo.tsx:161 (PR 725)` — so posting with `~/.claude/scripts/gh-pr-inline-comment.sh` needs no further lookups.
+Never use approximate line numbers in drafts — always grep to confirm the exact line before writing.
+This applies to local code reviews too: resolve all line numbers before writing the draft, not at posting time.
 
 **Reading files during PR analysis:** When reviewing or verifying findings against a PR's code, always use `~/.claude/scripts/gh-pr-file.sh <PR_NUMBER> <FILE_PATH>` to read the post-PR version of files.
 Never read files directly from disk with Read/cat during PR review — the working tree may not be in the same state.
