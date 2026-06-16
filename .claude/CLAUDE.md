@@ -144,6 +144,13 @@ _____________________________________
 6. Opacity.
    The code is hard to understand.
 
+## User Input Encoding
+
+Never interpolate user-supplied data directly into JavaScript string literals inside HTML attributes (e.g. `onclick="fn('${name}')"`).
+Apostrophes, quotes, and other characters in values like device names will silently break the JS string and cause the handler to never fire.
+Instead, use `data-*` attributes for the values and pass `this` to the handler, which reads `this.dataset.foo` — this is immune to any characters in the value.
+The same principle applies everywhere user data touches a string delimiter: SQL queries (use parameterized queries), shell commands (use argument arrays not string interpolation), URL parameters (use `encodeURIComponent`), and HTML content (use `textContent` or a proper escape function, never `innerHTML` with raw user data).
+
 ## Markdown Files
 
 Before writing or significantly editing a markdown file, ask whether it will be long-lived in source control (e.g. CLAUDE.md, README, docs) or short-lived (e.g. a PR review draft, a one-off note).
@@ -175,12 +182,22 @@ This applies to local code reviews too: resolve all line numbers before writing 
 **Reading files during PR analysis:** When reviewing or verifying findings against a PR's code, always use `~/.claude/scripts/gh-pr-file.sh <PR_NUMBER> <FILE_PATH>` to read the post-PR version of files.
 Never read files directly from disk with Read/cat during PR review — the working tree may not be in the same state.
 
+**Focus findings on the diff:** Only report issues introduced or meaningfully exposed by the PR's changes.
+Pre-existing issues in unchanged lines are out of scope unless the PR's changes make them newly reachable or worse.
+If a pre-existing issue is worth noting anyway, mark it clearly as `[PRE-EXISTING]` and place it in a separate section so it doesn't inflate the PR's bug count.
+
 ## Addressing PR Comments
 
 When asked to address PR comments, first ask whether to take **local actions only** or **full PR updates**.
 
 - **Local only** — update code and prepare comment replies in a local draft file, but do not commit (there may be more comments to address first).
 - **Full PR update** — make code changes, then commit, push, and post replies on the PR.
+
+## Git
+
+Never run `git push` unless explicitly asked to push in that specific message.
+Treat each commit request independently — a prior "commit and push" does not carry forward to the next task.
+If asked to "commit" a change in a previous message, please ask for user to clarify before working whether you should commit the change.
 
 ## Troubleshooting browser issues, especially with visibility and styling
 
