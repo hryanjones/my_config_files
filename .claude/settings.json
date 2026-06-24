@@ -1,6 +1,11 @@
 {
   "permissions": {
     "allow": [
+      "Bash(crontab -l)",
+      "Bash(adb:*)",
+      "Bash(lsblk:*)",
+      "Bash(du:*)",
+      "Bash(df:*)",
       "Bash(xmllint:*)",
       "Bash(sort:*)",
       "Read(//home/hryanjones/.claude/**)",
@@ -106,5 +111,6 @@
   "theme": "dark-daltonized",
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "sonnet"
 }

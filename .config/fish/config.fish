@@ -1,3 +1,6 @@
+# Allow git to work across filesystem boundaries (needed for symlinks into /mnt/data)
+set -x GIT_DISCOVERY_ACROSS_FILESYSTEM 1
+
 # Use everything that we've got in .bash_aliases
 . ~/.bash_aliases
 

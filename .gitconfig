@@ -31,3 +31,6 @@
   default = current
 [init]
 	defaultBranch = main
+[safe]
+	directory = /home/hryanjones/EpochAI
+	directory = /home/hryanjones/EpochAI/epoch-website-astro/

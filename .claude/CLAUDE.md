@@ -23,6 +23,17 @@ When querying or extracting from XML, SVG, or HTML, prefer `xmllint` (xpath quer
 
 Prefer clean, readable code.
 
+Prefer early returns over ternaries in function return statements.
+Instead of `return condition ? a : b`, write `if (condition) return a; return b;`.
+Do NOT use early returns if they increase repetition — if the branches share significant trailing logic, use if/else to set a variable instead.
+For nested ternaries in variable assignments, prefer if/else over nesting: `if (a) x = 1; else if (b) x = 2; else x = 3;` is clearer than `const x = a ? 1 : b ? 2 : 3`.
+Simple single-level ternary variable assignments (`const x = condition ? a : b`) are fine when short and both branches are obvious.
+
+Prefer flat if-chains over nested ifs.
+When an outer condition is just a conjunction of inner ones, expand it into each branch instead of nesting.
+Each case then states its own full condition and is readable in isolation without tracking outer context.
+Example — instead of `if (a && b) { if (c) return x; return y; } if (a) return z;`, write `if (a && b && c) return x; if (a && b) return y; if (a) return z;`.
+
 Prefer self-documenting code, such as using a variable name to document.
 So instead of this (this is Understandability tops #2 below):
 ```ts
@@ -194,6 +205,16 @@ When asked to address PR comments, first ask whether to take **local actions onl
 - **Full PR update** — make code changes, then commit, push, and post replies on the PR.
 
 ## Git
+
+Before committing, check the current branch.
+If it looks like a tracking branch (`main`, `master`, `develop`, or similar), create a feature branch first — e.g. `ryan/brief-description-of-change` — and commit there instead.
+Do not commit directly to tracking branches.
+
+Before drafting a commit message, ask: "Are there any links to context I should include — e.g. a ticket, QA item, GitHub issue, or design doc?"
+Wait for the answer before committing.
+If the user provides a link, it must appear in the commit message body.
+If the conversation already contains a link to a ticket or task that motivated the change, include it without asking.
+Always use the full URL in commit messages — never just an ID (e.g. use `https://...` not a bare ID like `cmqgujecj000dmc071m0aqnrh`).
 
 Never run `git push` unless explicitly asked to push in that specific message.
 Treat each commit request independently — a prior "commit and push" does not carry forward to the next task.
