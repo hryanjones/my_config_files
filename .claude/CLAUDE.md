@@ -210,7 +210,7 @@ Before committing, check the current branch.
 If it looks like a tracking branch (`main`, `master`, `develop`, or similar), create a feature branch first — e.g. `ryan/brief-description-of-change` — and commit there instead.
 Do not commit directly to tracking branches.
 
-Before drafting a commit message, ask: "Are there any links to context I should include — e.g. a ticket, QA item, GitHub issue, or design doc?"
+Before drafting a commit message for a shared repository (e.g. one of the last 5 commits is not by hryanjones), ask: "Are there any links to context I should include — e.g. a ticket, QA item, GitHub issue, or design doc?"
 Wait for the answer before committing.
 If the user provides a link, it must appear in the commit message body.
 If the conversation already contains a link to a ticket or task that motivated the change, include it without asking.

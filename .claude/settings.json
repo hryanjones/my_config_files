@@ -66,6 +66,9 @@
   "hooks": {
     "Stop": [
       {
+        "matchers": {
+          "is_subagent": false
+        },
         "hooks": [
           {
             "type": "command",
