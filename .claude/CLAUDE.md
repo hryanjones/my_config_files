@@ -227,6 +227,23 @@ When asked to address PR comments, first ask whether to take **local actions onl
 - **Local only** — update code and prepare comment replies in a local draft file, but do not commit (there may be more comments to address first).
 - **Full PR update** — make code changes, then commit, push, and post replies on the PR.
 
+## GitHub Actions Troubleshooting
+
+When debugging a workflow run (a failed/suspicious CI run, or checking what a dispatched run actually did), use these instead of hand-rolling `gh api` calls each time:
+
+- **Reading a specific job's logs:** `~/.claude/scripts/gh-run-job-logs.sh <RUN_ID> <JOB_NAME_SUBSTRING> [owner/repo]` — resolves the job ID by a (partial, case-sensitive) name match within the run and fetches its full logs.
+   Handles the two-step "find the job, then fetch its logs" API sequence in one call; warns to stderr and uses the first match if the name substring matches more than one job (e.g. a reusable-workflow job like `deploy-cloudflare / build-and-deploy`).
+- **Finding what went wrong:** `~/.claude/scripts/gh-run-job-errors.sh <RUN_ID> <JOB_NAME_SUBSTRING> [PATTERN] [owner/repo]` — same job resolution, then greps for common failure markers (`ERROR`, `Traceback`, `##[error]`, `[Ff]ailed`, `Exception`) with context, so you don't have to page through a multi-thousand-line log by hand.
+   Pass a custom `PATTERN` (a `grep -E` expression) to look for something more specific, e.g. a particular exception name.
+- **Dispatching and watching a run:** `~/.claude/scripts/gh-workflow-dispatch-and-watch.sh <WORKFLOW_FILE> <REF> [-- <extra gh workflow run flags>]` — dispatches a `workflow_dispatch` workflow, finds the resulting run, and blocks on `gh run watch` until it completes.
+   This blocks, so launch it as a background Bash command if you don't want to wait inline — you'll get a notification when it finishes.
+   Example: `gh-workflow-dispatch-and-watch.sh data-update.yml ryan/some-branch -- -f deployment=cloudflare -f s3Dir=ryan/some-branch`.
+- **Diagnosing a `workflow_run`-triggered workflow that silently no-oped (e.g. a bot comment that never posted):** `~/.claude/scripts/gh-run-concurrency-timeline.sh <WORKFLOW_FILE> [LIMIT=30] [owner/repo]` — prints a chronological timeline of that workflow's runs with each run's job count and the real source PR/branch, resolved from its head commit.
+   This exists because `gh run list`/the runs API report `headBranch` for `workflow_run`-triggered runs as the repo's default branch (its execution context), not the branch that actually triggered it — so a burst of runs can misleadingly look like they all belong to `main`.
+   A `cancelled` row with `0` jobs means that run was evicted from a `concurrency:` group's queue before it ever started (a different failure mode than a run that started and then failed) — look for another run in the same time window whose resolved branch matches the `concurrency.group` expression to find what evicted it.
+   Example: `gh-run-concurrency-timeline.sh preview-message.yml 40`.
+- For a run's overall job list/status (not logs), `gh run view <RUN_ID> --json jobs --jq '.jobs[] | {name, conclusion}'` is already concise enough as a raw `gh` command — no wrapper needed.
+
 ## Git
 
 Before committing, check the current branch.
