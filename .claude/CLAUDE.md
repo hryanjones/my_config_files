@@ -196,6 +196,14 @@ It merges commits, comments (including bot comments), reviews, edits, and force-
 The script tries a resolvable PR review comment first; if the line is not in the diff it automatically falls back to a commit comment, which is still inline at the correct line.
 Only use `gh-pr-reply.sh --issue` for findings that genuinely have no associated file or line.
 
+**Editing an already-posted comment:** Use `~/.claude/scripts/gh-pr-edit-comment.sh <COMMENT_ID> <BODY>` (or `--body-file <path>` for anything multi-line).
+It tries the PR-review-comment, commit-comment, and issue-comment endpoints in turn and reports which one matched, so there's no need to know in advance which of the three a given comment ID is (e.g. after `gh-pr-inline-comment.sh` silently fell back to a commit comment).
+Prefer `--body-file` over the inline-argument form for anything with code blocks or multiple lines — passing a body inline through a shell heredoc is where quoting mistakes happen (see below).
+
+**Heredoc quoting for comment bodies:** A quoted heredoc delimiter (`<<'EOF' ... EOF`) disables ALL shell interpolation inside it — do not escape backticks, `$`, or quotes with `\` in that case, since there is nothing for the shell to interpolate and the backslash is posted to GitHub literally (e.g. `` \`code\` `` instead of `` `code` ``).
+Only escape those characters inside an unquoted heredoc (`<<EOF`) or a double-quoted string, where the shell does interpolate.
+If a posted comment ends up with stray backslashes, it's this mistake — fix it with `gh-pr-edit-comment.sh` rather than deleting and reposting.
+
 **Resolving exact line numbers at draft time (no refetch on post):** Before writing each finding to the draft, resolve its exact line number using `~/.claude/scripts/gh-pr-file.sh <PR_NUMBER> <FILE_PATH> | grep -n "PATTERN"`.
 Store the resolved line number, file path, and PR number directly in the finding's heading in the draft — e.g., `### 1. [BUG] Title — src/foo.tsx:161 (PR 725)` — so posting with `~/.claude/scripts/gh-pr-inline-comment.sh` needs no further lookups.
 Never use approximate line numbers in drafts — always grep to confirm the exact line before writing.
