@@ -189,6 +189,9 @@ Post the comment body exactly as written — do not strip or summarize any part 
 Never use raw `gh api` calls for this — the script formats threads readably and handles pagination.
 This applies to reading, searching, or checking for comments by any user.
 
+**Reconstructing "what happened and when" on a PR** (e.g. did an agent revisit the PR after opening it, did a bot comment land before or after a given commit): use `~/.claude/scripts/gh-pr-activity-timeline.sh <PR_NUMBER> [owner/repo]`.
+It merges commits, comments (including bot comments), reviews, edits, and force-pushes from the PR's issue-timeline API into one chronological table, so there's no need to separately fetch commits and comments and manually interleave them by timestamp.
+
 **Always post on a line of code:** When a finding references a specific file+line, always use `~/.claude/scripts/gh-pr-inline-comment.sh` — never use `gh-pr-reply.sh --issue` for line-specific findings.
 The script tries a resolvable PR review comment first; if the line is not in the diff it automatically falls back to a commit comment, which is still inline at the correct line.
 Only use `gh-pr-reply.sh --issue` for findings that genuinely have no associated file or line.
