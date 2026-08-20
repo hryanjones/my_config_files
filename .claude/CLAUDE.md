@@ -216,6 +216,10 @@ Never read files directly from disk with Read/cat during PR review — the worki
 Pre-existing issues in unchanged lines are out of scope unless the PR's changes make them newly reachable or worse.
 If a pre-existing issue is worth noting anyway, mark it clearly as `[PRE-EXISTING]` and place it in a separate section so it doesn't inflate the PR's bug count.
 
+## Creating Pull Requests
+
+Always assign the PR to `hryanjones` — pass `--assignee hryanjones` to `gh pr create`, or run `gh pr edit <PR_NUMBER> --add-assignee hryanjones` if the PR is already open.
+
 ## Addressing PR Comments
 
 When asked to address PR comments, first ask whether to take **local actions only** or **full PR updates**.
