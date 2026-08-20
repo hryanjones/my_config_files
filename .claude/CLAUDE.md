@@ -179,9 +179,11 @@ For list items with multiple sentences, indent continuation sentences by 3 space
 Keep the Coding guidelines above in mind.
 Also, unless prompted to automatically publish comments on a github PR, always put comment drafts in a local markdown file **in the current working directory** (not /tmp/ — the file must be visible in the IDE file tree).
 The draft should have all the information needed to publish comments later without refetching.
-Also, all comments written by Claude should make that clear, e.g. with a preface like "Ryan's Claude : 🤖".
+Write each finding's body in the draft exactly as it will be posted, preface included — do not add the preface only at posting time.
+Preface every comment body (each individual finding and any overall/summary body) with the literal string `Ryan's Claude 🤖:` immediately followed by the writeup, so the draft file is a verbatim, ready-to-post copy of what goes to GitHub.
+Start each finding's body with its severity tag in bold immediately after the preface — e.g. `Ryan's Claude 🤖: **[BUG]** ...` or `Ryan's Claude 🤖: **[NIT]** ...` — so the tag is prominent in the posted comment, not just in the draft's heading.
 Note that you should always post from the file not from memory as it may have been reviewed by Ryan.
-Post the comment body exactly as written — do not strip or summarize any part of it, including any notes Ryan has added before "Ryan's Claude 🤖:".
+Post the comment body exactly as written — do not strip or summarize any part of it, including any notes Ryan has added before `Ryan's Claude 🤖:`.
 
 **Reading PR comments:** Always use `~/.claude/scripts/gh-pr-comments.sh <PR_NUMBER>` to read PR review threads and issue-level comments.
 Never use raw `gh api` calls for this — the script formats threads readably and handles pagination.
