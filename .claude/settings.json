@@ -66,13 +66,18 @@
   "hooks": {
     "Stop": [
       {
-        "matchers": {
-          "is_subagent": false
-        },
         "hooks": [
           {
             "type": "command",
             "command": "node \"/home/hryanjones/.claude/hooks/claude-notifier-on-stop.js\"; paplay /usr/share/sounds/freedesktop/stereo/complete.oga;espeak 'Claude done'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/hryanjones/.claude/notify.js\" # claude-code-notifier"
           }
         ]
       }
@@ -100,11 +105,21 @@
     ],
     "Notification": [
       {
-        "matcher": "permission_prompt|elicitation_dialog|idle_prompt|subagent_stop",
+        "matcher": "permission_prompt|elicitation_dialog|idle_prompt",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/home/hryanjones/.claude/notify.js\" # claude-code-notifier; paplay /usr/share/sounds/freedesktop/stereo/window-attention.oga; espeak 'Claude code needs your attention'"
+            "command": "node \"/home/hryanjones/.claude/notify.js\" # claude-code-notifier"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/hryanjones/.claude/notify.js\" # claude-code-notifier"
           }
         ]
       }
