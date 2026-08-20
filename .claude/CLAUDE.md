@@ -1,5 +1,11 @@
 # Global Claude Instructions
 
+## Attribution — Claude vs. Ryan
+
+Never attribute your (Claude's) words, comments, or actions to Ryan, or vice versa — in any writing (chat replies, drafts, PR comments, commit messages).
+Even when writing content that will be posted from Ryan's account, refer to things Claude did as Claude's ("in the UX comments Claude drafted") and things Ryan did as Ryan's ("in Ryan's UX comments") — never "my" for something the other said or did.
+When it's ambiguous who said or did something, say so explicitly rather than guessing.
+
 ## Scripting
 
 Prefer scripts we've written in `~/.claude/scripts` and normal terminal commands (e.g. jq, cat, grep, awk, etc.) over writing custom python or node scripts as these always require approval and the former does not.
