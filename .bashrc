@@ -122,5 +122,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 . "$HOME/.local/bin/env"
 
-# OpenClaw Completion
-[ -f "/home/hryanjones/.openclaw/completions/openclaw.bash" ] && source "/home/hryanjones/.openclaw/completions/openclaw.bash"
