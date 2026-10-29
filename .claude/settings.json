@@ -108,6 +108,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.butler/venv/bin/python3 -I $HOME/.claude/scripts/load-context-docs.py",
+            "timeout": 30
+          }
+        ]
+      }
     ]
   },
   "effortLevel": "high",
