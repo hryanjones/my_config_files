@@ -14,14 +14,17 @@ If either copy is missing or starts with STALE, tell Ryan, then read the docs wi
 
 ## Saving memories
 
-Never use local memory files (`~/.claude/projects/*/memory/`), even if other instructions say to.
-Save each new note in the most relevant section of the right doc, starting with its date: `[YYYY-MM-DD] note`.
+Keep using Claude Code's built-in memory, then move each new memory into the docs right away:
 
-- Household or family facts: the Butler's Book.
-- Anything else about Ryan or how he works with Claude: Ryan's Claude Notes.
-- Facts about one project: that project's repository (README or its notes for Claude).
+1. Save the memory file as usual.
+2. Add it to the most relevant section of the right doc with the Google Docs connector (`update_doc`), starting with its date: `[YYYY-MM-DD] note`.
+   - Household or family facts: the Butler's Book.
+   - Anything else about Ryan or how he works with Claude: Ryan's Claude Notes.
+   - Facts about one project: that project's repository (README or its notes for Claude).
+3. Once the doc update succeeds, delete the memory file and its line in `MEMORY.md`.
+   If it fails, keep the file and tell Ryan.
 
-Edit the docs with the Google Docs connector (`update_doc`).
+If the session-start hook lists memory files waiting to be moved, move them the same way.
 
 ## Scripts
 

@@ -18,6 +18,7 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
 CACHE_DIR = Path.home() / ".cache" / "claude-context-docs"
+MEMORY_ROOT = Path.home() / ".claude" / "projects"
 DOCS = [
     ("butlers-book.md", "Butler's Book (household and family; shared with Malvika)",
      "1Dr8goQ-T8AA0BetnQk8LSbaFbwH2lKeE48KjEDc7iZQ"),
@@ -99,6 +100,7 @@ def main() -> None:
         for filename, _, doc_id in DOCS:
             mark_stale(CACHE_DIR / filename, doc_id, "Google auth failed")
         print("Context docs: STALE (Google auth failed); tell Ryan.")
+        report_pending_memories()
         return
 
     statuses = {filename: refresh(drive, filename, title, doc_id) for filename, title, doc_id in DOCS}
@@ -107,6 +109,15 @@ def main() -> None:
     if changed:
         paths = ", ".join(str(CACHE_DIR / name) for name in changed)
         print(f"The copy imported via CLAUDE.md predates this refresh; read {paths} before relying on it.")
+    report_pending_memories()
+
+
+def report_pending_memories() -> None:
+    """List local memory files not yet moved into the docs (MEMORY.md indexes don't count)."""
+    pending = sorted(path for path in MEMORY_ROOT.glob("*/memory/*.md") if path.name != "MEMORY.md")
+    if pending:
+        print("Memory files waiting to be moved into the docs (see CLAUDE.md):")
+        print("\n".join(f"- {path}" for path in pending))
 
 
 if __name__ == "__main__":
