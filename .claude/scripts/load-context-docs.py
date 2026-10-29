@@ -24,6 +24,8 @@ DOCS = [
      "1Dr8goQ-T8AA0BetnQk8LSbaFbwH2lKeE48KjEDc7iZQ"),
     ("ryans-claude-notes.md", "Ryan's Claude Notes (Ryan-only)",
      "11ZBOOdh5eWjfnPtQfrPzwbmd-QJroHqR8y8xWa3O7WY"),
+    ("ryans-claude-code-notes.md", "Ryan's Claude Code Notes (Ryan-only; Claude Code only)",
+     "1VLAnfF8jdjAUq-LaWfzr3o8C2BPKocq0S9ZvxkC6pIA"),
 ]
 TOKEN_PATH = Path.home() / ".butler" / "tokens" / "drive_token.json"
 SCOPES = ["https://www.googleapis.com/auth/drive.readonly"]
