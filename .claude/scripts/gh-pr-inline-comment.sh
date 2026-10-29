@@ -3,6 +3,12 @@
 # For diff lines: creates a resolvable PR review comment.
 # For non-diff lines: falls back to a commit comment (inline but not resolvable).
 #
+# NOTE: this publishes immediately and notifies watchers. For drafted review
+# feedback that Ryan should approve before it goes out, use
+# gh-pr-pending-review.sh instead -- it queues comments as a pending review.
+# Reach for this script only when a finding must be anchored inline on a line
+# outside the diff (a pending review cannot anchor those).
+#
 # Usage: gh-pr-inline-comment.sh <PR> <FILE> <LINE> <BODY> [owner/repo]
 #
 # Example:
