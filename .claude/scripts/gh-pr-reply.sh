@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # Post a reply to a PR review comment thread, or a top-level PR comment.
+#
+# NOTE: this publishes immediately and notifies watchers. To queue replies for
+# Ryan to review and submit as a batch, use `gh-pr-pending-review.sh reply`.
 # Usage:
 #   gh-pr-reply.sh <PR_NUMBER> --thread <COMMENT_ID> <BODY> [owner/repo]
 #   gh-pr-reply.sh <PR_NUMBER> --issue <BODY> [owner/repo]
